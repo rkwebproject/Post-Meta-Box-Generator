@@ -1,2 +1,2 @@
-# metabox_generator
+# Metabox generator
 Generate Wordpress Metaboxes
