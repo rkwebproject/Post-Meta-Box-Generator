@@ -17,4 +17,5 @@ $arg = array(
       array("name"=>"email", "type"=>"text", "required"=>false)//fields
    )
 );
+
 new WPDocs_Custom_Meta_Box($arg);
