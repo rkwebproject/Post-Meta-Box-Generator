@@ -17,4 +17,5 @@ Add this code to function
       array("name"=>"email", "type"=>"text", "required"=>false)//fields
    )
 );
-new WPDocs_Custom_Meta_Box($arg);</pre>
+new Generate_Meta_Box($arg);
+</pre>
