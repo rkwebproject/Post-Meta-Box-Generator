@@ -186,7 +186,7 @@ class Generate_Meta_Box {
                     $field_value = $_POST[$field_name];
     
                     if (trim($field_value) == '' && $field['required']==true) {
-                        $errors[] = new WP_Error($field. '_validation_msg', 'Please enter title', 'error');
+                        $errors[] = new WP_Error($field. '_validation_msg', 'Please enter '.$field['name'], 'error');
                     } else if($field['validate_type']=='phone' && !preg_match('/^[0-9]{10}+$/', $field_value) && $field_value!='') {
                         $errors[] = new WP_Error($field. '_validation_msg', 'Please enter valid phone number', 'error');
                     }else if($field['validate_type']=='email' && !filter_var($field_value, FILTER_VALIDATE_EMAIL) && $field_value!='') {
@@ -227,13 +227,14 @@ class Generate_Meta_Box {
             $html .= '<div class="' . $msg_type . '">';
         } else {
         $html .= '<div class="error">';
+            echo "<style>";
+            foreach ($this->fields as $field) {
+                $field_name = $this->slug .'_' . $field['name'];
+                echo "#".$field_name;
+            }
+            echo "</style>";
         ?>
-        <style>
-            /*#title, #cypher-profile-work-parent, #radio-cypher-profile-work-categorydiv, #radio-cypher-profile-categorydiv, #radio-articles-categorydiv,
-            #radio-festival-categorydiv, #radio-boombox-categorydiv {
-               border: 1px solid red !important;
-            }*/
-        </style>
+       
     <?php }
     
     foreach ($msgs as $msg) {
