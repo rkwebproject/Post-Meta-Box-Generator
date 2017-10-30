@@ -179,7 +179,7 @@ class Generate_Meta_Box {
     
     
             $post_type = get_post_type($post_id);
-            if(!empty($this->fields)) {
+            if(!empty($this->fields) && in_array($post_type, $this->post_type)) {
     
                 foreach ($this->fields as $field) {
                     $field_name = $this->slug .'_' . $field['name'];
@@ -188,7 +188,7 @@ class Generate_Meta_Box {
                     if (trim($field_value) == '' && $field['required']==true) {
                         $errors[] = new WP_Error($field. '_validation_msg', 'Please enter '.$field['name'], 'error');
                     } else if($field['validate_type']=='phone' && !preg_match('/^[0-9]{10}+$/', $field_value) && $field_value!='') {
-                        $errors[] = new WP_Error($field. '_validation_msg', 'Please enter valid phone number', 'error');
+                        $errors[] = new WP_Error($field. '_validation_msg', 'Please enter valid '.$field['name'], 'error');
                     }else if($field['validate_type']=='email' && !filter_var($field_value, FILTER_VALIDATE_EMAIL) && $field_value!='') {
                         $errors[] = new WP_Error($field. '_validation_msg', 'Please enter valid email', 'error');
                     }
